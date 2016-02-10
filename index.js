@@ -13,13 +13,8 @@ function Link(url, link, line) {
 
 /**
  *  Parser constructor.
- *
- *  Creates an array of links from the spider output of wget.
  */
-function Parser(opts) {
-  opts = opts || {};
-  this.opts = opts;
-
+function Parser() {
   this.seen = [];
   this.doc = {links: [], broken: []};
 }
@@ -54,13 +49,12 @@ function parse(buf) {
     }
   }
   lines.forEach(onLine.bind(this));
-
   return this.doc;
 }
 
 Parser.prototype.parse = parse;
 
-module.exports = function parser(data, opts) {
-  var p = new Parser(opts);
+module.exports = function parser(data) {
+  var p = new Parser();
   return p.parse(data);
 }
