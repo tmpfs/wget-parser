@@ -2,6 +2,10 @@ Table of Contents
 =================
 
 * [Spider parser](#spider-parser)
+  * [Usage](#usage)
+  * [wget-parser](#wget-parser)
+  * [wget-spider](#wget-spider)
+  * [Output](#output)
   * [Developer](#developer)
     * [Test](#test)
     * [Cover](#cover)
@@ -21,6 +25,78 @@ Parses the spider output from [wget](https://www.gnu.org/software/wget) into an 
 This object could then be processed further to create a tree structure of the hierarchy of a website such that sitemap generation could be implemented.
 
 Tested using `wget v1.15` on linux.
+
+## Usage
+
+```javascript
+var parser = require('wget-parser')
+  , buf = new Buffer(0);      // buffer should contain the spider output
+console.dir(parser(buf));
+```
+
+## wget-parser
+
+A program that reads from `stdin` and prints the result of the parse as JSON:
+
+```
+cat test/fixtures/mock.txt | wget-parser
+```
+
+## wget-spider
+
+A program that performs a spider with [wget](https://www.gnu.org/software/wget) and pipes the output to `wget-parser`:
+
+```
+wget-spider http://google.com
+```
+
+## Output
+
+Example output from the parser:
+
+```json
+{
+  "links": [
+    {
+      "url": {
+        "protocol": "http:",
+        "slashes": true,
+        "auth": null,
+        "host": "google.com",
+        "port": null,
+        "hostname": "google.com",
+        "hash": null,
+        "search": null,
+        "query": null,
+        "pathname": "/",
+        "path": "/",
+        "href": "http://google.com/"
+      },
+      "link": "http://google.com/",
+      "line": "--2016-02-10 16:11:57--  http://google.com/"
+    },
+    {
+      "url": {
+        "protocol": "http:",
+        "slashes": true,
+        "auth": null,
+        "host": "www.google.co.id",
+        "port": null,
+        "hostname": "www.google.co.id",
+        "hash": null,
+        "search": "?gws_rd=cr&ei=zfC6Vv6KKYexuATc3pu4DQ",
+        "query": "gws_rd=cr&ei=zfC6Vv6KKYexuATc3pu4DQ",
+        "pathname": "/",
+        "path": "/?gws_rd=cr&ei=zfC6Vv6KKYexuATc3pu4DQ",
+        "href": "http://www.google.co.id/?gws_rd=cr&ei=zfC6Vv6KKYexuATc3pu4DQ"
+      },
+      "link": "http://www.google.co.id/?gws_rd=cr&ei=zfC6Vv6KKYexuATc3pu4DQ",
+      "line": "--2016-02-10 16:11:57--  http://www.google.co.id/?gws_rd=cr&ei=zfC6Vv6KKYexuATc3pu4DQ"
+    }
+  ],
+  "broken": []
+}
+```
 
 ## Developer
 

@@ -47,6 +47,8 @@
       {
         "inc": [
           "introduction.md",
+          "usage.md",
+          "output.md",
           "developer.md"
         ]
       }
