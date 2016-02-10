@@ -1,6 +1,6 @@
 {
   "name": "wget-parser",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Parses the wget spider output into an object",
   "author": "muji",
   "license": "MIT",
@@ -12,7 +12,7 @@
     "url": "https://github.com/tmpfs/wget-parser/issues"
   },
   "directories": {
-    "bin": "./bin" 
+    "bin": "./bin"
   },
   "keywords": [
     "wget",
