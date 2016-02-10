@@ -25,8 +25,8 @@ function Parser() {
  *  Tested against wget v1.15 on linux.
  */
 function parse(buf) {
-  var s = Buffer.isBuffer(buf) ? buf.toString() : '' + buf;
-  var lines = s.split(/\r?\n/)
+  var s = Buffer.isBuffer(buf) ? buf.toString() : '' + buf
+    , lines = s.split(/\r?\n/)
     , inBroken;
   function onLine(line) {
     var u
