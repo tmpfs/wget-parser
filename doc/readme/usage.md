@@ -6,6 +6,12 @@ var parser = require('wget-parser')
 console.dir(parser(buf));
 ```
 
+* `parser.Parser`: The parser class. 
+* `parser.Link`: The class that represents a link. 
+* `parser.ParseStream`: Parse stream class.
+
+Streams support is available, see the [test spec](/test/spec/parser.js) for example usage.
+
 ### wget-parser
 
 A program that reads from `stdin` and prints the result of the parse as JSON, exits with error code 1 if any broken links are found.
