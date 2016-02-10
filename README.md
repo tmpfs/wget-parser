@@ -36,7 +36,7 @@ console.dir(parser(buf));
 
 ## wget-parser
 
-A program that reads from `stdin` and prints the result of the parse as JSON, exits with error code 1 if any broken links are found otherwise 0.
+A program that reads from `stdin` and prints the result of the parse as JSON, exits with error code 1 if any broken links are found.
 
 ```
 cat test/fixtures/mock.txt | wget-parser
