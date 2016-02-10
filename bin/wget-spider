@@ -1,6 +1,10 @@
 #!/bin/sh
 
+# Note that if you pass bad arguments which will be 
+# passed on to wget you won't see the error be sure
+# your wget command is good first
+
 wget \
   --spider \
   --recursive \
-  $1 2>&1 >/dev/null | wget-parser
+  $* 2>&1 >/dev/null | wget-parser
