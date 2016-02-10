@@ -40,8 +40,9 @@ describe('parser:', function() {
   })
 
   it('should parse as stream', function(done) {
-
-    var entries = 0;
+    var readable = fs.createReadStream('test/fixtures/mock.txt')
+      , Mock = through.transform(transform)
+      , entries = 0;
 
     function transform(chunk, encoding, cb) {
       expect(chunk).to.be.an.instanceof(parser.Link);
@@ -49,16 +50,14 @@ describe('parser:', function() {
       cb(); 
     }
 
-    var Mock = through.transform(transform)
-    var readable = fs.createReadStream('test/fixtures/mock.txt');
     readable.on('end', function() {
       expect(entries).to.eql(2);
       done();
     })
+
     readable
       .pipe(new LineStream())
       .pipe(new parser.ParseStream())
       .pipe(new Mock());
   })
-
 })
