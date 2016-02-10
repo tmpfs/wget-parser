@@ -1,4 +1,5 @@
-var url = require('url');
+var url = require('url')
+  , pattern = /^(--\d+-\d+-\d+ \d+:\d+:\d+--\s*)(.*)$/;
 
 /**
  *  Encapsulates a link entry.
@@ -32,7 +33,7 @@ function parse(buf) {
     var u
       , link;
     if(/^--/.test(line)) {
-      u = line.replace(/^(--\d+-\d+-\d+ \d+:\d+:\d+--\s*)(.*)$/, '$2');
+      u = line.replace(pattern, '$2');
       if(!~this.seen.indexOf(u)) {
         link = new Link(url.parse(u), u, line);
         this.doc.links.push(link);
@@ -53,6 +54,8 @@ function parse(buf) {
 }
 
 Parser.prototype.parse = parse;
+
+Parser.pattern = pattern;
 
 module.exports = function parser(data) {
   var p = new Parser();
