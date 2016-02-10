@@ -18,7 +18,7 @@ Spider parser
 
 [<img src="https://travis-ci.org/tmpfs/wget-parser.svg?v=1" alt="Build Status">](https://travis-ci.org/tmpfs/wget-parser)
 [<img src="http://img.shields.io/npm/v/wget-parser.svg?v=1" alt="npm version">](https://npmjs.org/package/wget-parser)
-[<img src="https://coveralls.io/repos/tmpfs/wget-parser/badge.svg?branch=master&service=github&v=1" alt="Coverage Status">](https://coveralls.io/github/tmpfs/wget-parser?branch=master).
+[<img src="https://coveralls.io/repos/tmpfs/wget-parser/badge.svg?branch=master&service=github&v=2" alt="Coverage Status">](https://coveralls.io/github/tmpfs/wget-parser?branch=master).
 
 Parses the spider output from [wget](https://www.gnu.org/software/wget) into an object structure of links.
 
