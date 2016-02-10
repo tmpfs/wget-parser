@@ -1,15 +1,15 @@
 var url = require('url')
+  , through = require('through3')
   , pattern = /^(--\d+-\d+-\d+ \d+:\d+:\d+--\s*)(.*)$/;
 
 /**
  *  Encapsulates a link entry.
  */
-function Link(url, link, line) {
-  return {
-    url: url,
-    link: link,
-    line: line
-  }
+function Link(uri, link, line, broken) {
+  this.url = uri;
+  this.link = link;
+  this.line = line;
+  this.broken = broken;
 }
 
 /**
@@ -25,17 +25,20 @@ function Parser() {
  *
  *  Tested against wget v1.15 on linux.
  */
-function parse(buf) {
+function parse(buf, cb) {
   var s = Buffer.isBuffer(buf) ? buf.toString() : '' + buf
-    , lines = s.split(/\r?\n/)
-    , inBroken;
+    , lines = Array.isArray(buf) ? buf : s.split(/\r?\n/)
+    , inBroken
+    , results = [];
+
   function onLine(line) {
     var u
       , link;
     if(/^--/.test(line)) {
       u = line.replace(pattern, '$2');
       if(!~this.seen.indexOf(u)) {
-        link = new Link(url.parse(u), u, line);
+        link = new Link(url.parse(u), u, line, false);
+        results.push(link);
         this.doc.links.push(link);
         this.seen.push(u);
       }
@@ -46,18 +49,44 @@ function parse(buf) {
         inBroken++;
         return;
       }
-      this.doc.broken.push(new Link(url.parse(line), line, line));
+      link = new Link(url.parse(line), line, line, true);
+      results.push(link);
+      this.doc.broken.push(link);
     }
   }
+
   lines.forEach(onLine.bind(this));
+
+  if(typeof cb === 'function') {
+    return cb(results); 
+  }
+
   return this.doc;
 }
 
 Parser.prototype.parse = parse;
 
-Parser.pattern = pattern;
-
-module.exports = function parser(data) {
+function parser(data) {
   var p = new Parser();
   return p.parse(data);
 }
+
+/**
+ *  Transform the array of lines using the standard parse function.
+ */
+function transform(chunk, encoding, cb) {
+  function onParse(results) {
+    for(var i = 0;i < results.length;i++) {
+      this.push(results[i]);
+    }
+    cb();
+  }
+  this.parse(chunk, onParse.bind(this));
+}
+
+parser.Parser = Parser;
+parser.Link = Link;
+parser.pattern = pattern;
+parser.ParseStream = through.transform(transform, {ctor: Parser});
+
+module.exports = parser;

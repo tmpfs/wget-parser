@@ -21,7 +21,11 @@
     "links",
     "url"
   ],
+  "dependencies": {
+    "through3": "~1.1.5"
+  },
   "devDependencies": {
+    "stream-lines": "~1.1.6",
     "chai": "~3.5.0",
     "coveralls": "~2.11.6",
     "istanbul": "~0.4.2",
