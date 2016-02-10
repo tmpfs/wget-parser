@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+
+var parser = require('..')
+  , buf = new Buffer(0);
+
+process.stdin.on('readable', function(size) {
+  var data = process.stdin.read(size);
+  if(data === null) {
+    var res = parser(buf);
+    process.stdout.write(JSON.stringify(res, undefined, 2));
+    return;
+  }
+  buf = Buffer.concat([buf, data], buf.length + data.length);
+});

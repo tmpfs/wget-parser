@@ -1,0 +1,31 @@
+Spider mode enabled. Check if remote file exists.
+--2016-02-10 15:55:42--  http://google.com/
+Resolving google.com (google.com)... 74.125.68.101, 74.125.68.138, 74.125.68.139, ...
+Connecting to google.com (google.com)|74.125.68.101|:80... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: http://www.google.co.id/?gws_rd=cr&ei=_-y6VrLbGoy2uATb8pC4CQ [following]
+Spider mode enabled. Check if remote file exists.
+--2016-02-10 15:55:43--  http://www.google.co.id/?gws_rd=cr&ei=_-y6VrLbGoy2uATb8pC4CQ
+Resolving www.google.co.id (www.google.co.id)... 74.125.200.94, 2404:6800:4003:c02::5e
+Connecting to www.google.co.id (www.google.co.id)|74.125.200.94|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Remote file exists and could contain links to other resources -- retrieving.
+
+--2016-02-10 15:55:43--  http://www.google.co.id/?gws_rd=cr&ei=_-y6VrLbGoy2uATb8pC4CQ
+Reusing existing connection to www.google.co.id:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘google.com/index.html’
+
+     0K .......... .........                                    247K=0.08s
+
+2016-02-10 15:55:43 (247 KB/s) - ‘google.com/index.html’ saved [20095]
+
+Removing google.com/index.html.
+
+Found no broken links.
+
+FINISHED --2016-02-10 15:55:43--
+Total wall clock time: 1.0s
+Downloaded: 1 files, 20K in 0.08s (247 KB/s)
