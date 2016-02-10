@@ -1,6 +1,6 @@
 {
   "name": "wget-parser",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Parses the wget spider output into an object",
   "author": "muji",
   "license": "MIT",
