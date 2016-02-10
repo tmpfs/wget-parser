@@ -86,7 +86,6 @@ function transform(chunk, encoding, cb) {
 
 parser.Parser = Parser;
 parser.Link = Link;
-parser.pattern = pattern;
 parser.ParseStream = through.transform(transform, {ctor: Parser});
 
 module.exports = parser;
