@@ -18,8 +18,8 @@
     "wget",
     "parser",
     "spider",
-    "object",
-    "json"
+    "links",
+    "url"
   ],
   "devDependencies": {
     "chai": "~3.5.0",
