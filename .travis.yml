@@ -1,5 +1,3 @@
-services:
-  - couchdb
 language: node_js
 script: npm run cover
 node_js:
