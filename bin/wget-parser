@@ -8,7 +8,7 @@ process.stdin.on('readable', function(size) {
   if(data === null) {
     var res = parser(buf);
     process.stdout.write(JSON.stringify(res, undefined, 2));
-    return;
+    process.exit(res.broken.length ? 1 : 0);
   }
   buf = Buffer.concat([buf, data], buf.length + data.length);
 });
